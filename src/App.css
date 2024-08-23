@@ -1,0 +1,9 @@
+pre {
+  text-align: left;
+  background-color: rgba(255,255,255,.05);
+  border-radius: 4px;
+  border: 1px solid #000;
+  padding: 16px;
+  max-height: 500px;
+  overflow: scroll;
+}
