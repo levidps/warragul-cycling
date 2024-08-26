@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 import { WeatherForecastResponse } from "../models/weather.models.ts";
-import { API_KEY } from "../env.ts";
 import Card from "./Card.tsx";
 
-const BASE_URL = 'https://api.openweathermap.org/data/3.0/onecall';
-const DEFAULT_LOCATION : {lat: number, lon: number} = { lat:-38.1667, lon:145.9333};
+const BASE_URL = 'https://open-weather-map.levidps.workers.dev/';
 
 function Weather() {
 	const [weather, setWeather] = useState<WeatherForecastResponse | null>(null)
@@ -13,15 +11,8 @@ function Weather() {
 	useEffect(() => {
 		const fetchWeather = async () => {
 			try {
-				const config = {
-					params: {
-						...DEFAULT_LOCATION,
-						appid: API_KEY,
-						units: 'metric',
-						exclude: 'minutely,alerts',
-					}
-				};
-				const response = await axios.get<string, AxiosRequestConfig<any>>(BASE_URL, config)
+				// TODO: built to accept LAT/LON if want to support alternate locales
+				const response = await axios.get<string, AxiosRequestConfig<any>>(BASE_URL)
 				setWeather(response.data)
 			} catch (error) {
 				console.error('Error fetching weather data:', error)
