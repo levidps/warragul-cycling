@@ -1,0 +1,5 @@
+.calendarWrapper {
+    max-width: 250px;
+    position: sticky;
+    top: var(--spacing)
+}

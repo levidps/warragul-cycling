@@ -1,6 +1,6 @@
 .card {
     border-radius: 4px;
-    background-color: #333;
+    background-color: var(--color-card);
     flex-grow: 1;
     overflow: scroll;
 }

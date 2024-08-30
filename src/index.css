@@ -1,4 +1,5 @@
 :root {
+  font-size: var(--base-font-size, 16px);
   --color-text: rgba(255, 255, 255, 0.87);
   --color-bg: #242424;
 
@@ -15,11 +16,33 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --base-font-size: 16px;
   --spacing: 8px;
   --border-color: rgba(255,255,255,.3);
+  --color-card: #333;
+
+  --color-hue: 40;
+  --color-sat: 96%;
+  --color-light: 50%;
+
+
+  --color-light-plus: calc(var(--color-light) * 1.12);
+  --color-light-minus: calc(var(--color-light) * .75);
+  --color-primary-light: hsl(var(--color-hue), var(--color-sat), var(--color-light-plus));
+  --color-primary: hsl(var(--color-hue), var(--color-sat), var(--color-light));
+  --color-primary-dark: hsl(var(--color-hue), var(--color-sat), var(--color-light-minus));
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-text: rgba(0, 0, 0, 1);
+    --color-bg: #fff;
+    --color-card: #eee;
+  }
 }
 
 p {
   margin-bottom: 0;
   margin-top: 0;
+  font-size: .8rem;
 }
