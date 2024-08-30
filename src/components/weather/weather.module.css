@@ -29,8 +29,26 @@
 }
 
 .dailyForecast {
-    border-right: 1px solid;
+    position: relative;
+    border-right: 1px solid var(--border-color);
     padding-right: var(--spacing);
+}
+
+.dailyForecast:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: calc(var(--spacing) * -1);
+    left: calc(var(--spacing) * -1);
+    width: calc(100% + var(--spacing));
+    height: calc(100% + var(--spacing) * 2);
+    background-color: rgba(0,0,0,.2);
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+.dailyForecast:hover:before {
+    opacity: 1;
 }
 
 .dailyForecast:last-of-type {

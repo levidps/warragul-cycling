@@ -1,9 +1,13 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
-import { WeatherForecastResponse, DailyForecast } from "../../models/weather.models.ts";
+import {
+	WeatherForecastResponse,
+	WeatherForecast,
+	DailyWeatherForecast
+} from "../../models/weather.models.ts";
 import Card from "../card/Card.tsx";
 import * as css from './weather.module.css'
-import { dateFormat } from "../../utils/dates.ts";
+import { dateFormat, hourFormat } from "../../utils/dates.ts";
 import RainIcon from "../icons/Rain.tsx";
 import { angleToDirection, round } from "../../utils/maths.ts";
 
@@ -18,7 +22,7 @@ function RainForecast({rain}: PropsWithChildren<{rain?: number}>) {
 	)
 }
 
-function ForecastDetails({ temp, rain }: DailyForecast) {
+function ForecastDetails({ temp, rain }: DailyWeatherForecast) {
 	return (
 		<>
 			<p>
@@ -34,14 +38,35 @@ function ForecastDetails({ temp, rain }: DailyForecast) {
 	)
 }
 
-function Forecast({ forecast }: PropsWithChildren<{ forecast?: DailyForecast[] }>) {
+function DailyForecast({ forecast }: { forecast?: DailyWeatherForecast[] }) {
 	return (
-		<Card>
+		<Card title='Daily'>
 			<div className={css.forecastWrapper}>
 				{forecast && forecast.map((d) => {
 					return <div className={css.dailyForecast}>
 						<p>{dateFormat(d.dt)}</p>
 						<ForecastDetails {...d}/>
+					</div>
+				})}
+			</div>
+		</Card>
+	)
+}
+
+function HourlyForecast({ forecast}: { forecast?: WeatherForecast[] }) {
+	return (
+		<Card title='Hourly'>
+			<div className={css.forecastWrapper}>
+				{forecast && forecast.map((d) => {
+					return <div className={css.dailyForecast}>
+						<p>
+							{dateFormat(d.dt)}
+							<br/>{hourFormat(d.dt)}
+						</p>
+						<p>
+							{round(d.temp)}°
+						</p>
+						<RainForecast rain={d.rain ? d.rain['1h'] : undefined}/>
 					</div>
 				})}
 			</div>
@@ -91,7 +116,8 @@ function Weather() {
 					 </div>
 				 </Card>
 				}
-				<Forecast forecast={weather?.daily}/>
+				<DailyForecast forecast={weather?.daily}/>
+				<HourlyForecast forecast={weather?.hourly}/>
 			</div>
 		</>
 	);

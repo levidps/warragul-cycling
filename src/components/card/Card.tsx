@@ -11,7 +11,7 @@ function Card(props: PropsWithChildren<Props>) {
 		<>
 			<div className={card.card}>
 				{ props.title &&
-					<h1>{ props.title }</h1>
+					<h2>{ props.title }</h2>
 				}
 				{ props.children }
 			</div>

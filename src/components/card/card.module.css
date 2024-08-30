@@ -4,3 +4,12 @@
     flex-grow: 1;
     overflow: scroll;
 }
+
+.card h2 {
+    font-size: .9rem;
+    margin: 0;
+    font-weight: 600;
+    padding: calc(var(--spacing) * .5) var(--spacing);
+    border-bottom: 1px solid var(--border-color);
+    opacity: .5;
+}

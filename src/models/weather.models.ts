@@ -5,7 +5,7 @@ export type WeatherForecastResponse = {
 	timezone_offset: number;
 	current:         WeatherForecast;
 	hourly:          WeatherForecast[];
-	daily:           DailyForecast[];
+	daily:           DailyWeatherForecast[];
 	alerts:          Alert[];
 }
 
@@ -55,7 +55,7 @@ export type Icon = '10n' | '10d' | '01d' | '04d' | '04n' | string;
 
 export type Main = 'Rain' | 'Clear' | 'Clouds' | string;
 
-export type DailyForecast = {
+export type DailyWeatherForecast = {
 	dt:         number;
 	sunrise:    number;
 	sunset:     number;
