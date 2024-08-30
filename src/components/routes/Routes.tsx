@@ -25,9 +25,8 @@ function RouteItem({name, rwgps_id}: Route) {
 	return (
 		<>
 			<Card>
-				<h4>{name}</h4>
 				<iframe src={embedUrl}
-				        style={{width: '1px', minWidth: '100%', height: '250px', border: 'none'}}/>
+				        style={{width: '1px', minWidth: '100%', height: '350px', border: 'none'}}/>
 			</Card>
 		</>
 	)

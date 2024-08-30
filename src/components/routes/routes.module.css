@@ -1,4 +1,5 @@
 .routeWrapper {
     display: flex;
     gap: var(--spacing);
+    flex-direction: column;
 }
