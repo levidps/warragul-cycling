@@ -8,5 +8,5 @@ export const dateFormat = (date: number): string => {
 	const ds = d.getDay();
 	const dayMap = {0: 'sun', 1: 'mon', 2: 'tue', 3: 'wed', 4: 'thur', 5: 'fri', 6: 'sat'};
 
-	return `${dayMap[ds]} ${day}.${m}`
+	return `${dayMap[ds]} ${day}/${m}`
 }

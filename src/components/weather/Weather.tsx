@@ -1,21 +1,51 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
-import { WeatherForecastResponse, WeatherForecast, DailyForecast } from "../../models/weather.models.ts";
+import { WeatherForecastResponse, DailyForecast } from "../../models/weather.models.ts";
 import Card from "../card/Card.tsx";
 import * as css from './weather.module.css'
 import { dateFormat } from "../../utils/dates.ts";
+import RainIcon from "../icons/Rain.tsx";
+import { angleToDirection, round } from "../../utils/maths.ts";
 
 const BASE_URL = 'https://open-weather-map.levidps.workers.dev/';
 
-function Forecast({ forecast }: PropsWithChildren<{forecast?: DailyForecast[]}>) {
-	return(
+function RainForecast({rain}: PropsWithChildren<{rain?: number}>) {
+	return (
+		<p className={css.rainWrapper}>
+			<span className='units'><RainIcon/></span>
+			{rain ? `${round(rain)}mm` : '-'}
+		</p>
+	)
+}
+
+function ForecastDetails({ temp, rain }: DailyForecast) {
+	return (
 		<>
-			{forecast && forecast.map((d) => {
-				return <>
-					<p>{dateFormat(d.dt)}</p>
-				</>
-			})}
+			<p>
+				<span className='units'>H</span>
+				{round(temp.max)}°
+			</p>
+			<p>
+				<span className='units'>L</span>
+				{round(temp.min)}°
+			</p>
+			<RainForecast rain={rain}/>
 		</>
+	)
+}
+
+function Forecast({ forecast }: PropsWithChildren<{ forecast?: DailyForecast[] }>) {
+	return (
+		<Card>
+			<div className={css.forecastWrapper}>
+				{forecast && forecast.map((d) => {
+					return <div className={css.dailyForecast}>
+						<p>{dateFormat(d.dt)}</p>
+						<ForecastDetails {...d}/>
+					</div>
+				})}
+			</div>
+		</Card>
 	)
 }
 
@@ -47,17 +77,16 @@ function Weather() {
 						 />
 						 <div className={css.currentWeather}>
 							 <p>{dateFormat(weather.current.dt)}</p>
-							 <p>{weather.current.temp}°</p>
+							 <p>{round(weather.current.temp)}°</p>
+							 <p>
+								 {round(weather.current.wind_speed)}<i
+								 style={{ opacity: '.5d' }}>/</i>{round(weather.current.wind_gust)}
+								 <span className='units'>kph</span>
+								 <span className={css.windDirection}>{angleToDirection(weather.current.wind_deg)}</span>
+							 </p>
 						 </div>
 						 <div className={css.dailyWeather}>
-							 <p>
-								 <span className='units'>H</span>
-								 {weather.daily[ 0 ].temp.max}°
-							 </p>
-							 <p>
-								 <span className='units'>L</span>
-								 {weather.daily[ 0 ].temp.min}°
-							 </p>
+							 <ForecastDetails {...weather.daily[0]}/>
 						 </div>
 					 </div>
 				 </Card>

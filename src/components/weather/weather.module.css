@@ -15,6 +15,38 @@
     align-items: center;
 }
 
+.forecastWrapper {
+    display: flex;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.forecastWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.dailyForecast {
+    border-right: 1px solid;
+    padding-right: var(--spacing);
+}
+
+.dailyForecast:last-of-type {
+    border-right: none;
+}
+
+.dailyForecast p {
+    word-break: keep-all;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+.dailyForecast p:first-of-type {
+    margin-bottom: var(--spacing);
+}
+
 .weatherIcon {
     height: 40px;
     width: auto;
@@ -29,4 +61,17 @@
 .dailyWeather {
     margin-left: auto;
     margin-right: 0;
+}
+
+.rainWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.rainWrapper span {
+    height: 16px;
+}
+
+.windDirection {
+    letter-spacing: .2em;
 }
