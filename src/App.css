@@ -3,7 +3,23 @@ pre {
   background-color: rgba(255,255,255,.05);
   border-radius: 4px;
   border: 1px solid #000;
-  padding: 16px;
+  padding: calc(var(--spacing) * 2);
   max-height: 500px;
   overflow: scroll;
+}
+
+main {
+  display: flex;
+  align-items: start;
+  flex-direction: row;
+  gap: var(--spacing);
+}
+
+main > * {
+  flex-grow: 1;
+}
+
+.units {
+  opacity: .6;
+  margin-right: calc(var(--spacing) * .5);
 }

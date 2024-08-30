@@ -1,14 +1,15 @@
 import './App.css'
-import Weather from "./components/weather.tsx";
+import Weather from "./components/weather/Weather.tsx";
+import Routes from "./components/routes/Routes.tsx";
 
 function App() {
 
   return (
     <>
-      <div>
-          WTF:
+      <main>
           <Weather/>
-      </div>
+          <Routes/>
+      </main>
     </>
   )
 }

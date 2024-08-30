@@ -1,0 +1,4 @@
+.routeWrapper {
+    display: flex;
+    gap: var(--spacing);
+}

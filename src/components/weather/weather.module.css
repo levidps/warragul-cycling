@@ -1,0 +1,32 @@
+.weatherWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+    max-width: 250px;
+    position: sticky;
+    top: 0;
+    font-family: monospace;
+}
+
+.weatherCard {
+    display: flex;
+    padding: var(--spacing) calc(var(--spacing) * 2) var(--spacing) var(--spacing);
+    text-transform: capitalize;
+    align-items: center;
+}
+
+.weatherIcon {
+    height: 40px;
+    width: auto;
+    margin-right: calc(var(--spacing) * .5);
+}
+
+.currentWeather, .dailyWeather {
+    display: flex;
+    flex-direction: column;
+}
+
+.dailyWeather {
+    margin-left: auto;
+    margin-right: 0;
+}

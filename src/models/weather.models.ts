@@ -1,58 +1,95 @@
-export interface WeatherForecastResponse {
-	cod: string;
-	message: number;
-	cnt: number;
-	current: ForecastItem;
-	daily: ForecastItem[],
-	hourly: ForecastItem[];
-	city: City;
+export type WeatherForecastResponse = {
+	lat:             number;
+	lon:             number;
+	timezone:        string;
+	timezone_offset: number;
+	current:         WeatherForecast;
+	hourly:          WeatherForecast[];
+	daily:           DailyForecast[];
+	alerts:          Alert[];
 }
 
-export interface ForecastItem {
-	dt: number;
-	main: {
-		temp: number;
-		feels_like: number;
-		temp_min: number;
-		temp_max: number;
-		pressure: number;
-		sea_level: number;
-		grnd_level: number;
-		humidity: number;
-		temp_kf: number;
-	};
-	weather: {
-		id: number;
-		main: string;
-		description: string;
-		icon: string;
-	}[];
-	clouds: {
-		all: number;
-	};
-	wind: {
-		speed: number;
-		deg: number;
-		gust: number;
-	};
+export type Alert = {
+	sender_name: string;
+	event:       string;
+	start:       number;
+	end:         number;
+	description: string;
+	tags:        string[];
+}
+
+export type WeatherForecast = {
+	dt:         number;
+	sunrise?:   number;
+	sunset?:    number;
+	temp:       number;
+	feels_like: number;
+	pressure:   number;
+	humidity:   number;
+	dew_point:  number;
+	uvi:        number;
+	clouds:     number;
 	visibility: number;
-	pop: number;
-	sys: {
-		pod: string;
-	};
-	dt_txt: string;
+	wind_speed: number;
+	wind_deg:   number;
+	wind_gust:  number;
+	weather:    Weather[];
+	rain?:      Rain;
+	pop?:       number;
 }
 
-export interface City {
-	id: number;
-	name: string;
-	coord: {
-		lat: number;
-		lon: number;
-	};
-	country: string;
-	population: number;
-	timezone: number;
-	sunrise: number;
-	sunset: number;
+export type Rain = {
+	'1h': number;
+}
+
+export type Weather = {
+	id:          number;
+	main:        Main;
+	description: Description;
+	icon:        Icon;
+}
+
+export type Description = 'light rain' | 'heavy intensity rain' | 'clear sky' | 'overcast clouds' | 'broken clouds';
+
+export type Icon = '10n' | '10d' | '01d' | '04d' | '04n' | string;
+
+export type Main = 'Rain' | 'Clear' | 'Clouds' | string;
+
+export type DailyForecast = {
+	dt:         number;
+	sunrise:    number;
+	sunset:     number;
+	moonrise:   number;
+	moonset:    number;
+	moon_phase: number;
+	summary:    string;
+	temp:       Temp;
+	feels_like: FeelsLike;
+	pressure:   number;
+	humidity:   number;
+	dew_point:  number;
+	wind_speed: number;
+	wind_deg:   number;
+	wind_gust:  number;
+	weather:    Weather[];
+	clouds:     number;
+	pop:        number;
+	rain?:      number;
+	uvi:        number;
+}
+
+export type FeelsLike = {
+	day:   number;
+	night: number;
+	eve:   number;
+	morn:  number;
+}
+
+export type Temp = {
+	day:   number;
+	min:   number;
+	max:   number;
+	night: number;
+	eve:   number;
+	morn:  number;
 }
