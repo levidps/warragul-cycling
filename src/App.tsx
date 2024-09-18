@@ -2,7 +2,7 @@ import './App.css'
 import Weather from "./components/weather/Weather.tsx";
 import Routes from "./components/routes/Routes.tsx";
 import WeekCalendar from "./components/calendar/Calendar.tsx";
-import { useWeatherData, WeatherProvider } from "./context/WeatherContext.tsx";
+import { useWeatherData } from "./context/WeatherContext.tsx";
 import { useEffect } from "react";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     }, []);
 
   return (
-    <>
+    <>w
       <main>
           <Weather/>
           <div className="content">
