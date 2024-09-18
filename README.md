@@ -2,6 +2,9 @@
 
 Personal project to explore React+Vite+Cloudflare (workers/pages) and assemble various local routes, group rides and give a forecast.
 
+## Site
+Viewable at [wcc.levidps.com](https://wcc.levidps.com)
+
 ## Roadmap/Ideas
 - Vary color based on current weather (or forecast for selected future day)
   • has been accounted for using HSL css with variables allowing for dynamic changing of colour while ensuring saturation and lightness are optimized for viewing.
