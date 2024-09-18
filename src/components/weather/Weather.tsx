@@ -10,8 +10,7 @@ import * as css from './weather.module.css'
 import { dateFormat, hourFormat } from "../../utils/dates.ts";
 import RainIcon from "../icons/Rain.tsx";
 import { angleToDirection, round } from "../../utils/maths.ts";
-
-const BASE_URL = 'https://open-weather-map.levidps.workers.dev/';
+import { useWeatherData } from "../../context/WeatherContext.tsx";
 
 function RainForecast({rain}: PropsWithChildren<{rain?: number}>) {
 	return (
@@ -75,20 +74,7 @@ function HourlyForecast({ forecast}: { forecast?: WeatherForecast[] }) {
 }
 
 function Weather() {
-	const [ weather, setWeather ] = useState<WeatherForecastResponse | null>(null)
-
-	useEffect(() => {
-		const fetchWeather = async () => {
-			try {
-				const response = await axios.get<string, AxiosRequestConfig<any>>(BASE_URL)
-				setWeather(response.data)
-			} catch (error) {
-				console.error('Error fetching weather data:', error)
-			}
-		}
-
-		fetchWeather().then();
-	}, [])
+	const { weather } = useWeatherData();
 
 	return (
 		<>

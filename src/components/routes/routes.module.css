@@ -3,15 +3,3 @@
     gap: var(--spacing);
     flex-direction: column;
 }
-
-.routeActions {
-    position: sticky;
-    top: var(--spacing);
-    padding: 0 var(--spacing);
-}
-
-.routeActions > * {
-    display: flex;
-    justify-content: space-between;
-    padding: var(--spacing);
-}

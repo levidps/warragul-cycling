@@ -46,12 +46,6 @@ function Routes() {
 
 	return(
 		<div className={css.routeWrapper}>
-			<div className={css.routeActions}>
-				<Card>
-					<input type='text' onKeyUp={(e) => setSearch(() => e.target.value)}/>
-					<button>FILTERS</button>
-				</Card>
-			</div>
 			{routes.map((route) => {
 				return (<RouteItem {...route}/>)
 			})}
