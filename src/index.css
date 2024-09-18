@@ -18,7 +18,7 @@
 
   --base-font-size: 16px;
   --spacing: 8px;
-  --border-color: rgba(255,255,255,.3);
+  --color-border: rgba(255,255,255,.3);
   --color-card: #333;
 
   --color-hue: 40;
@@ -37,7 +37,8 @@
   :root {
     --color-text: rgba(0, 0, 0, 1);
     --color-bg: #fff;
-    --color-card: #eee;
+    --color-card: #fff;
+    --color-border: rgba(0,0,0,.1);
   }
 }
 

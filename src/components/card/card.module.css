@@ -3,6 +3,7 @@
     background-color: var(--color-card);
     flex-grow: 1;
     overflow: scroll;
+    border: 1px solid var(--color-border);
 }
 
 .card h2 {
