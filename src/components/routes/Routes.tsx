@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Card from "../card/Card.tsx";
 import * as css from './routes.module.css';
@@ -18,14 +18,17 @@ const FETCH_ROUTES = async (): Promise<Route[]> => {
 
 function RouteItem({name, rwgps_id}: Route) {
 	const [embedUrl, setEmbed] = useState<string>(null);
+	// TODO: improve UX for devices with scrolling - currently interrupts flow to zoom maps
+	const frame = useRef<HTMLIFrameElement | null>(null);
 
 	useEffect(() => {
-		setEmbed(`https://ridewithgps.com/embeds?type=route&id=${rwgps_id}&hideSurface=true`)
+		setEmbed(`https://ridewithgps.com/embeds?type=route&id=${rwgps_id}&hideSurface=true`);
 	}, [rwgps_id]);
 	return (
 		<>
 			<Card>
-				<iframe src={embedUrl}
+				<iframe ref={frame}
+				        src={embedUrl}
 				        style={{width: '1px', minWidth: '100%', height: '350px', border: 'none'}}/>
 			</Card>
 		</>
@@ -35,7 +38,6 @@ function RouteItem({name, rwgps_id}: Route) {
 
 function Routes() {
 	const [ routes, setRoutes ] = useState<Route[]>([])
-	const [ search, setSearch] = useState<string>()
 
 	useEffect(() => {
 		FETCH_ROUTES().then((resp) => {

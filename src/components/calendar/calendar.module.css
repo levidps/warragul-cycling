@@ -1,3 +1,9 @@
+:root {
+    --color-sat-shift: calc(var(--color-sat) * .6);
+    --color-light-shift: calc(var(--color-light) * 1.125);
+    --weekend-color: hsl(var(--color-hue), var(--color-sat-shift), var(--color-light-shift));
+}
+
 .calendarWrapper {
     position: sticky;
     top: var(--spacing);
@@ -7,8 +13,20 @@
     flex-grow: 1;
     align-items: center;
     justify-content: space-around;
+    box-shadow: 0 4px 5px -5px rgba(0,0,0,.2);
 
     > * {
+        flex-grow: 1;
+        text-align: center;
         padding: var(--spacing);
+        transition: all .3s ease;
+
+        &:hover, &.today:hover {
+            background-color: var(--color-primary-light);
+        }
+
+        &.today {
+            background-color: var(--color-primary);
+        }
     }
 }
