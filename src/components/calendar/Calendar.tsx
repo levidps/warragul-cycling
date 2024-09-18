@@ -1,6 +1,5 @@
 import Card from "../card/Card.tsx";
 import * as css from './calendar.module.css';
-import Calendar from "react-calendar";
 import React, { useState, useMemo } from "react";
 
 interface WeekCalendarProps {
