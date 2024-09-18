@@ -12,7 +12,7 @@ function App() {
     }, []);
 
   return (
-    <>w
+    <>
       <main>
           <Weather/>
           <div className="content">
