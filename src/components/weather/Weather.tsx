@@ -21,7 +21,7 @@ function RainForecast({rain}: PropsWithChildren<{rain?: number}>) {
 	)
 }
 
-function ForecastDetails({ temp, rain }: DailyWeatherForecast) {
+export function ForecastDetails({ temp, rain }: DailyWeatherForecast) {
 	return (
 		<>
 			<p>
@@ -34,21 +34,6 @@ function ForecastDetails({ temp, rain }: DailyWeatherForecast) {
 			</p>
 			<RainForecast rain={rain}/>
 		</>
-	)
-}
-
-function DailyForecast({ forecast }: { forecast?: DailyWeatherForecast[] }) {
-	return (
-		<Card title='Daily'>
-			<div className={css.forecastWrapper}>
-				{forecast && forecast.map((d) => {
-					return <div className={css.dailyForecast}>
-						<p>{dateFormat(d.dt)}</p>
-						<ForecastDetails {...d}/>
-					</div>
-				})}
-			</div>
-		</Card>
 	)
 }
 
@@ -102,7 +87,6 @@ function Weather() {
 					 </div>
 				 </Card>
 				}
-				<DailyForecast forecast={weather?.daily}/>
 				<HourlyForecast forecast={weather?.hourly}/>
 			</div>
 		</>

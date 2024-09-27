@@ -6,7 +6,7 @@ type TWeatherContext = {
 	weather: WeatherForecastResponse | null;
 	loading: boolean;
 	error: Error | null;
-	fetchWeather: (url: string) => Promise<void>;
+	fetchWeather: () => Promise<WeatherForecastResponse>;
 }
 
 const BASE_URL = 'https://open-weather-map.levidps.workers.dev/';
@@ -23,8 +23,8 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
 		setError(null);
 		try {
 			const response = await axios.get<string, AxiosRequestConfig<any>>(BASE_URL);
-			console.log(response);
 			setWeather(response.data)
+			return response.data;
 		} catch (e) {
 			setError(e instanceof Error ? e : new Error('An unknown error occurred'));
 		} finally {
