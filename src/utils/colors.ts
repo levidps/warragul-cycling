@@ -4,9 +4,13 @@ export const mapHSL = (temp: number | undefined, rain: number | undefined, time:
 	l: number
 } => {
 
-	const hueBase = 40;
-	const saturationBase = 85;
-	const lightnessBase = 50;
+	const hue = !temp || temp > 25 ?
+	                40 :
+	                temp > 15 && temp <= 25 ?
+		                25 :
+		                15;
+	const saturation = !rain || rain < 1.5 ? 90 : 75;
+	const lightness: number = !time || time < 7 || time > 21 ? 25 : 50;
 
-	return { h: 0, s: 0, l: 0};
+	return { h: hue, s: saturation, l: lightness};
 }
