@@ -18,6 +18,11 @@ describe('mapHSL', () => {
 		it('undefined is red', () => {
 			const val = mapHSL(undefined, BASE_VALUES.rain, BASE_VALUES.time);
 			expect(val.h).toEqual(40);
+		});
+
+		it('cold is blue', () => {
+			const val = mapHSL(9, BASE_VALUES.rain, BASE_VALUES.time);
+			expect(val.h).toEqual(15);
 		})
 	});
 
