@@ -16,8 +16,8 @@ const FETCH_ROUTES = async (): Promise<Route[]> => {
 	return response.data;
 }
 
-function RouteItem({name, rwgps_id}: Route) {
-	const [embedUrl, setEmbed] = useState<string>(null);
+function RouteItem({rwgps_id}: Route) {
+	const [embedUrl, setEmbed] = useState<string | undefined>(undefined);
 	// TODO: improve UX for devices with scrolling - currently interrupts flow to zoom maps
 	const frame = useRef<HTMLIFrameElement | null>(null);
 

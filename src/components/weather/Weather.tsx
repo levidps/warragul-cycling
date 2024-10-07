@@ -1,7 +1,5 @@
-import { PropsWithChildren, useEffect, useState } from "react";
-import axios, { AxiosRequestConfig } from "axios";
+import { PropsWithChildren, useEffect, useRef, } from "react";
 import {
-	WeatherForecastResponse,
 	WeatherForecast,
 	DailyWeatherForecast
 } from "../../models/weather.models.ts";
@@ -11,6 +9,7 @@ import { dateFormat, hourFormat } from "../../utils/dates.ts";
 import RainIcon from "../icons/Rain.tsx";
 import { angleToDirection, round } from "../../utils/maths.ts";
 import { useWeatherData } from "../../context/WeatherContext.tsx";
+import { assignHSLValues, mapHSL } from "../../utils/colors.ts";
 
 function RainForecast({rain}: PropsWithChildren<{rain?: number}>) {
 	return (
@@ -58,35 +57,46 @@ function HourlyForecast({ forecast}: { forecast?: WeatherForecast[] }) {
 	)
 }
 
+function CurrentForecast({current, daily}: {current: WeatherForecast, daily: DailyWeatherForecast}) {
+	const ref = useRef<HTMLDivElement | null>(null)
+
+	useEffect(() => {
+		if (ref.current)
+			assignHSLValues(ref.current, mapHSL(current.temp, daily.rain))
+	}, [current, daily, ref]);
+
+	return (
+		<Card >
+			<div ref={ref} className={css.weatherCard}>
+				<img src={`https://openweathermap.org/img/wn/${current.weather[ 0 ].icon}@2x.png`}
+				     alt={current.weather[ 0 ].description}
+				     className={css.weatherIcon}
+				/>
+				<div className={css.currentWeather}>
+					<p>{dateFormat(current.dt)}</p>
+					<p>{round(current.temp)}°</p>
+					<p>
+						{round(current.wind_speed)}<i
+						style={{ opacity: '.5d' }}>/</i>{round(current.wind_gust)}
+						<span className='units'>kph</span>
+						<span className={css.windDirection}>{angleToDirection(current.wind_deg)}</span>
+					</p>
+				</div>
+				<div className={css.dailyWeather}>
+					<ForecastDetails {...daily}/>
+				</div>
+			</div>
+		</Card>
+	)
+}
+
 function Weather() {
 	const { weather } = useWeatherData();
 
 	return (
 		<>
 			<div className={css.weatherWrapper}>
-				{weather?.current &&
-				 <Card>
-					 <div className={css.weatherCard}>
-						 <img src={`https://openweathermap.org/img/wn/${weather.current.weather[ 0 ].icon}@2x.png`}
-							  alt={weather.current.weather[ 0 ].description}
-							  className={css.weatherIcon}
-						 />
-						 <div className={css.currentWeather}>
-							 <p>{dateFormat(weather.current.dt)}</p>
-							 <p>{round(weather.current.temp)}°</p>
-							 <p>
-								 {round(weather.current.wind_speed)}<i
-								 style={{ opacity: '.5d' }}>/</i>{round(weather.current.wind_gust)}
-								 <span className='units'>kph</span>
-								 <span className={css.windDirection}>{angleToDirection(weather.current.wind_deg)}</span>
-							 </p>
-						 </div>
-						 <div className={css.dailyWeather}>
-							 <ForecastDetails {...weather.daily[0]}/>
-						 </div>
-					 </div>
-				 </Card>
-				}
+				{weather?.current && <CurrentForecast current={weather.current} daily={weather.daily[0]}/>}
 				<HourlyForecast forecast={weather?.hourly}/>
 			</div>
 		</>

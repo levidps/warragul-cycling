@@ -11,6 +11,7 @@
 .weatherCard {
     display: flex;
     padding: var(--spacing) calc(var(--spacing) * 2) var(--spacing) var(--spacing);
+    background: hsl(var(--color-hue), var(--color-sat), var(--color-light));
     text-transform: capitalize;
     align-items: center;
 }

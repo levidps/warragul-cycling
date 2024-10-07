@@ -20,13 +20,17 @@
         text-align: center;
         padding: var(--spacing);
         transition: all .3s ease;
+        background: hsl(var(--color-hue), var(--color-sat), var(--color-light));
+        border-bottom: 2px solid transparent;
+        text-transform: capitalize;
 
-        &:hover, &.today:hover {
-            background-color: hsl(var(--color-hue), var(--color-sat), var(--color-light-plus));
+        &:hover {
+            border-bottom-color: inherit;
+            cursor: pointer;
         }
 
         &.today {
-            background-color: hsl(var(--color-hue), var(--color-sat), var(--color-light));
+            border-bottom-color: #fff;
         }
     }
 }
