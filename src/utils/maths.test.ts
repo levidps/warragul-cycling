@@ -1,5 +1,5 @@
 import { describe, expect, it, test } from "vitest";
-import { angleToDirection, ANGLES } from "./maths.ts";
+import { angleToDirection, ANGLES, round } from "./maths.ts";
 
 describe('angleToDirection', () => {
 	describe.sequential('at angle', () => {
@@ -25,4 +25,19 @@ describe('angleToDirection', () => {
 
 		expect(formatted).toEqual('N');
 	});
+});
+
+describe('round', () => {
+	it('rounds number down', () => {
+		const val = round(2.4);
+		expect(val).toEqual(2);});
+
+	it('rounds number up', () => {
+		const val = round(2.5);
+		expect(val).toEqual(3);});
+
+	it('returns even number', () => {
+		const val = round(2);
+		expect(val).toEqual(2);
+	})
 })
