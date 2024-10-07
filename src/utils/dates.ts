@@ -6,7 +6,7 @@ export const dateFormat = (date: number): string | null => {
 
 	const d = new Date(date * 1000);
 	const day = d.getDate();
-	const m = d.getMonth();
+	const m = d.getMonth() + 1;
 	const ds = d.getDay();
 	const dayMap = ['sun', 'mon', 'tue', 'wed', 'thur', 'fri', 'sat'];
 

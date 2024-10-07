@@ -37,9 +37,19 @@ export function ForecastDetails({ temp, rain }: DailyWeatherForecast) {
 }
 
 function HourlyForecast({ forecast}: { forecast?: WeatherForecast[] }) {
+	const ref = useRef<HTMLDivElement | null>(null)
+
+	useEffect(() => {
+		if (ref.current && ref.current.children && forecast) {
+			Array.from(ref.current.children).forEach((el, i) => {
+				const weather: undefined | WeatherForecast = forecast[i];
+				assignHSLValues(el as HTMLElement, mapHSL(weather.temp, weather.rain ? weather.rain['1h'] : 0))
+			})
+		}
+	}, [forecast, ref]);
 	return (
 		<Card title='Hourly'>
-			<div className={css.forecastWrapper}>
+			<div ref={ref} className={css.forecastWrapper}>
 				{forecast && forecast.map((d) => {
 					return <div className={css.dailyForecast}>
 						<p>
