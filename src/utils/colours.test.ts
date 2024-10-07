@@ -10,20 +10,19 @@ describe('mapHSL', () => {
 
 	// temperature tests
 	describe('when temp is', () => {
-		it('hot hue is red', () => {
-			const val = mapHSL(30, BASE_VALUES.rain, BASE_VALUES.time);
-			expect(val.h).toEqual(40);
+		[
+			[33, 20],
+			[26, 40],
+			[undefined, 40],
+			[18, 155],
+			[9, 185],
+			[5, 200]
+		].forEach((hMap) => {
+			it(`${hMap[0]} returns ${hMap[1]}`, () => {
+				const val = mapHSL(hMap[0], BASE_VALUES.rain, BASE_VALUES.time);
+				expect(val.h).toEqual(hMap[1]);
+			});
 		});
-
-		it('undefined is red', () => {
-			const val = mapHSL(undefined, BASE_VALUES.rain, BASE_VALUES.time);
-			expect(val.h).toEqual(40);
-		});
-
-		it('cold is blue', () => {
-			const val = mapHSL(9, BASE_VALUES.rain, BASE_VALUES.time);
-			expect(val.h).toEqual(15);
-		})
 	});
 
 	// rain tests

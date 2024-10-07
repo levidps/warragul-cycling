@@ -22,11 +22,11 @@
         transition: all .3s ease;
 
         &:hover, &.today:hover {
-            background-color: var(--color-primary-light);
+            background-color: hsl(var(--color-hue), var(--color-sat), var(--color-light-plus));
         }
 
         &.today {
-            background-color: var(--color-primary);
+            background-color: hsl(var(--color-hue), var(--color-sat), var(--color-light));
         }
     }
 }

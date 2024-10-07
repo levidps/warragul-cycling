@@ -10,10 +10,12 @@ function App() {
     const { fetchWeather } = useWeatherData()
     useEffect(() => {
         fetchWeather().then((resp) => {
-            console.log(resp?.current);
-
             const current = resp?.current;
-            console.log(mapHSL(current?.temp, current?.rain?.['1h'], current?.dt));
+            const {h, s, l} = mapHSL(current?.temp, current?.rain?.['1h'], current?.dt);
+            document.body.style.setProperty('--color-hue', `${h}`);
+            document.body.style.setProperty('--color-sat', `${s}%`);
+            document.body.style.setProperty('--color-light', `${l}%`);
+            console.log(h,s,l);
         });
     }, []);
 

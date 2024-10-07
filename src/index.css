@@ -28,9 +28,6 @@
 
   --color-light-plus: calc(var(--color-light) * 1.12);
   --color-light-minus: calc(var(--color-light) * .75);
-  --color-primary-light: hsl(var(--color-hue), var(--color-sat), var(--color-light-plus));
-  --color-primary: hsl(var(--color-hue), var(--color-sat), var(--color-light));
-  --color-primary-dark: hsl(var(--color-hue), var(--color-sat), var(--color-light-minus));
 }
 
 @media (prefers-color-scheme: light) {
