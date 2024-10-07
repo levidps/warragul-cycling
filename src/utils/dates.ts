@@ -1,21 +1,21 @@
 const isValidDate = (date: number): boolean => !!(date && !isNaN(date));
 
-export const dateFormat = (date: number): string => {
+export const dateFormat = (date: number): string | null => {
 	if (!isValidDate(date))
-		return;
+		return null;
 
 	const d = new Date(date * 1000);
 	const day = d.getDate();
 	const m = d.getMonth();
 	const ds = d.getDay();
-	const dayMap = {0: 'sun', 1: 'mon', 2: 'tue', 3: 'wed', 4: 'thur', 5: 'fri', 6: 'sat'};
+	const dayMap = ['sun', 'mon', 'tue', 'wed', 'thur', 'fri', 'sat'];
 
 	return `${dayMap[ds]} ${day}/${m}`
 }
 
-export const hourFormat = (date: number): string => {
+export const hourFormat = (date: number): string | null => {
 	if (!isValidDate(date))
-		return;
+		return null;
 
 	const d = new Date(date * 1000);
 	const h = d.getHours();
