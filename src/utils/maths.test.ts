@@ -2,15 +2,13 @@ import { describe, expect, it, test } from "vitest";
 import { angleToDirection, ANGLES } from "./maths.ts";
 
 describe('angleToDirection', () => {
-	let count: number = 1;
 	describe.sequential('at angle', () => {
-		while (count < (ANGLES.length - 1)) {
-			const AS = count * 22.5;
-			test(`${AS} will return ${} == ${ANGLES[count]}`, () => {
+		for (let i = 0; i < ANGLES.length; i++) {
+			const AS = i * 22.5 + 5;
+			test(`${AS} will return ${ANGLES[i]}`, () => {
 				const formatted = angleToDirection(AS);
-				expect(formatted).toEqual(ANGLES[count]);
+				expect(formatted).toEqual(ANGLES[i]);
 			});
-			count += 1;
 		}
 	});
 
