@@ -22,7 +22,12 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
 		setLoading(true);
 		setError(null);
 		try {
-			const response = await axios.get<string, AxiosRequestConfig<any>>(BASE_URL);
+			// TODO: allow means to pass lat/long here
+			// - potential to make widget for clubs to display routes w/weather
+			const long = "145.9309";
+			const lat = "-38.1635";
+			const response =
+				      await axios.get<string, AxiosRequestConfig<any>>(`${BASE_URL}?lat=${lat}&lon=${long}`);
 			setWeather(response.data)
 			return response.data;
 		} catch (e) {

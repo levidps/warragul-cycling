@@ -12,8 +12,8 @@ export default {
 		const QUERY = new URL(request.url).searchParams;
 
 		const PARAMS = {
-			lat: QUERY.get('lat') ? parseInt(QUERY.get('lat')) : -38.1667,
-			lon: QUERY.get('lon') ? parseInt(QUERY.get('lon')) : 145.9333,
+			lat: QUERY.get('lat') ? QUERY.get('lat') : -38.1667,
+			lon: QUERY.get('lon') ? QUERY.get('lon') : 145.9333,
 			appid: env.opw_key,
 			units: 'metric',
 			exclude: 'minutely,alerts',
