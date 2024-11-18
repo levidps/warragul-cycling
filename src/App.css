@@ -13,6 +13,10 @@ main {
   align-items: start;
   flex-direction: row;
   gap: var(--spacing);
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+  }
 }
 
 main > * {
@@ -22,6 +26,10 @@ main > * {
 .content {
   display: flex;
   gap: var(--spacing);
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+  }
 }
 
 .units {
