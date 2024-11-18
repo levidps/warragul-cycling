@@ -26,6 +26,11 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
 			// - potential to make widget for clubs to display routes w/weather
 			const long = "145.9309";
 			const lat = "-38.1635";
+			/**
+			 * TODO: update for caching
+			 * - add cache function to see if time of cache and cache data is valid
+			 * - only make call if it's invalid or data is missing
+			 */
 			const response =
 				      await axios.get<string, AxiosRequestConfig<any>>(`${BASE_URL}?lat=${lat}&lon=${long}`);
 			setWeather(response.data)
