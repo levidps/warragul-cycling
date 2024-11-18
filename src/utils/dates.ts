@@ -20,5 +20,7 @@ export const hourFormat = (date: number): string | null => {
 
 	const d = new Date(date * 1000);
 	const h = d.getHours();
-	return `${(h > 12) ? h % 12 : h}${h < 12 ? 'AM' : 'PM'}`;
+	return `${(h > 12) ? h % 12 : h}${timeOfDayUnits(h).toUpperCase()}`;
 }
+
+export const timeOfDayUnits = (time: number): 'am' | 'pm' => time < 12 ? 'am' : 'pm';

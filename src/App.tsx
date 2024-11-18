@@ -5,6 +5,7 @@ import { useWeatherData } from "./context/WeatherContext.tsx";
 import { useEffect } from "react";
 import Rides from "./components/rides/rides.tsx";
 import Events from "./components/events/events.tsx";
+import Footer from "./components/footer/footer.tsx";
 
 function App() {
     const { fetchWeather } = useWeatherData()
@@ -24,6 +25,7 @@ function App() {
               </div>
           </div>
       </main>
+      <Footer/>
     </>
   )
 }

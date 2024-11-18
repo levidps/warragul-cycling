@@ -2,7 +2,7 @@ import { data, TRide } from '../../rides.ts';
 import Card from "../card/Card.tsx";
 import  * as css from './rides.module.css';
 import { PropsWithChildren, useEffect, useState } from "react";
-import { dayMap } from "../../utils/dates.ts";
+import { dayMap, timeOfDayUnits } from "../../utils/dates.ts";
 
 function Units({children}: PropsWithChildren) {
 	return (
@@ -26,7 +26,7 @@ function Rides() {
 				      className={css.ridesCard}>
 					<div className={css.cardBody}>
 						<div className={css.details}>
-							<p><strong>Time:</strong> {ride.start}</p>
+							<p><strong>Time:</strong> {ride.start}<Units>{timeOfDayUnits(ride.start)}</Units></p>
 							<p><strong>Leaves:</strong> {ride.location}</p>
 							<p><strong>Pace:</strong> {ride.speed}<Units>kph</Units><br/>
 								{ride.speed_min && ride.speed_max &&
