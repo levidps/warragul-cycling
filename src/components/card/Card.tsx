@@ -1,4 +1,4 @@
-import { forwardRef, PropsWithChildren, useRef } from "react";
+import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import * as card from './card.module.css';
 
 type Props = {
@@ -7,12 +7,11 @@ type Props = {
 	ref: HTMLDivElement | null,
 }
 
-const Card = forwardRef(function CardComponent(props: PropsWithChildren<Props>) {
-	const localRef = useRef<HTMLDivElement | null>(null)
+const Card = forwardRef(function CardComponent(props: PropsWithChildren<Props>, ref: ForwardedRef<HTMLDivElement>) {
 
 	return (
 		<>
-			<div ref={localRef}
+			<div ref={ref}
 			     className={card.card + ' ' + props.className}>
 				{ props.title &&
 				  <h2>{ props.title }</h2>

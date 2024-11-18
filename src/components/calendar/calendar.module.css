@@ -6,6 +6,7 @@
 
 .calendarWrapper {
     position: sticky;
+    z-index: 1;
     top: var(--spacing);
     margin-bottom: var(--spacing);
     display: flex;

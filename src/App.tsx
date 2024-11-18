@@ -3,6 +3,8 @@ import Weather from "./components/weather/Weather.tsx";
 import WeekCalendar from "./components/calendar/Calendar.tsx";
 import { useWeatherData } from "./context/WeatherContext.tsx";
 import { useEffect } from "react";
+import Rides from "./components/rides/rides.tsx";
+import Events from "./components/events/events.tsx";
 
 function App() {
     const { fetchWeather } = useWeatherData()
@@ -14,8 +16,12 @@ function App() {
     <>
       <main>
           <Weather/>
-          <div className="content">
+          <div>
               <WeekCalendar/>
+              <div className="content">
+                  <Rides/>
+                  <Events/>
+              </div>
           </div>
       </main>
     </>

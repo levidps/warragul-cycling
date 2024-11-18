@@ -19,6 +19,11 @@ main > * {
   flex-grow: 1;
 }
 
+.content {
+  display: flex;
+  gap: var(--spacing);
+}
+
 .units {
   opacity: .6;
   margin-right: calc(var(--spacing) * .5);
