@@ -1,14 +1,9 @@
 import { data, TRide } from '../../rides.ts';
 import Card from "../card/Card.tsx";
 import  * as css from './rides.module.css';
-import { PropsWithChildren, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { dayMap, timeOfDayUnits } from "../../utils/dates.ts";
-
-function Units({children}: PropsWithChildren) {
-	return (
-		<span className={css.units}>{children}</span>
-	)
-}
+import { Units } from "../utils";
 
 function Rides() {
 	const [rides, setRides] = useState<TRide[]>([]);
