@@ -21,7 +21,6 @@ function App() {
               <WeekCalendar/>
               <div className="content">
                   <Rides/>
-                  <Events/>
               </div>
           </div>
       </main>
